@@ -1,3 +1,4 @@
+#!/bin/bash
 current_date=`date +'%d.%m.%Y'`
 current_time=`date +'%H:%M'`
 filename="tmp/${current_date}".txt

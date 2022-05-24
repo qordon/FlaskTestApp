@@ -10,19 +10,28 @@ def welcome():
 
 @app.route('/result', methods=['POST'])
 def result():
-    var_1 = request.form.get("var_1", type=int)
-    var_2 = request.form.get("var_2", type=int)
+    var_1 = request.form.get("var_1", type=float)
+    var_2 = request.form.get("var_2", type=float)
     operation = request.form.get("operation")
-    if(operation == 'Addition'):
-        result = var_1 + var_2
-    elif(operation == 'Subtraction'):
-        result = var_1 - var_2
-    elif(operation == 'Multiplication'):
-        result = var_1 * var_2
-    elif(operation == 'Division'):
-        result = var_1 / var_2
-    else:
-        result = 'INVALID CHOICE'
+
+    operations = {
+        "+": lambda a, b: a + b,
+        "-": lambda a, b: a - b,
+        "*": lambda a, b: a * b,
+        "/": lambda a, b: a / b
+    }
+    result = operations[operation](var_1, var_2)
+
+    # if(operation == 'Addition'):
+    #     result = var_1 + var_2
+    # elif(operation == 'Subtraction'):
+    #     result = var_1 - var_2
+    # elif(operation == 'Multiplication'):
+    #     result = var_1 * var_2
+    # elif(operation == 'Division'):
+    #     result = var_1 / var_2
+    # else:
+    #     result = 'INVALID CHOICE'
     entry = result
     return render_template('result.html', entry=entry)
 
